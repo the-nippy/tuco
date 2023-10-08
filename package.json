@@ -1,8 +1,11 @@
 {
-  "name": "tuco@tinypng",
+  "name": "tuco",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "tuco-tp": "tinyPNG/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
