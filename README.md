@@ -18,7 +18,7 @@ npm install -g tuco-cli
 
 对图片的操作都会生成新文件，在原文件名字基础上以 _tiny 结尾命名，不会改变原文件。
 
-- 压缩命令
+- **压缩命令**
 
   主要命令为 tuco-tp，采用该命令对图片压缩。
 
@@ -28,7 +28,7 @@ npm install -g tuco-cli
 
   会在xxx.png同级目录生成 xxx_tiny.png, 为压缩后的图片
 
-- 指定后缀（转码其他格式）
+- **指定后缀（转码其他格式）**
 
   目标格式的后缀，直接通过 - 指定，如 -png,-jpg
 
@@ -42,11 +42,14 @@ npm install -g tuco-cli
   tuco-tp -png xxx.jpg
   ```
 
-- 指定大小
+- **指定大小**
 
-  对大小的处理，有三种方式：scale(缩放), fit(适应指定宽高容器，图片显示完全，容器内可能空余), cover(覆盖指定宽高容器，图片可能被裁剪，容器被填满)
+  对大小的处理，有三种方式：
+    - scale(缩放)
+    - fit(适应指定宽高容器，图片显示完全，容器内可能空余)
+    - cover(覆盖指定宽高容器，图片可能被裁剪，容器被填满)
 
-  参数 --rs --rf --rc  (r resize, s scale, f fit, c cover)
+  通过参数 --rs, --rf, --rc 指定。（命名依据： r resize, s scale, f fit, c cover）
 
   - scale
     指定宽度180，高度缩放
@@ -75,7 +78,7 @@ npm install -g tuco-cli
   ```
   tuco-tp -png --rs="h200" dbd.jpeg
   ```
-  将依据 dbd.jpeg 生成 dbd_tiny.png 文件，按高度200缩放。
+  将依据 dbd.jpeg 生成 dbd_tiny.png 文件，按高度 200 缩放
 
 
 
