@@ -1,5 +1,5 @@
 # tuco
-a cli tools
+a cli tool
 
 ## 安装
 
