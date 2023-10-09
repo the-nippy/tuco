@@ -54,24 +54,24 @@ npm install -g tuco-cli
   - scale
     指定宽度180，高度缩放
     ```
-    tuco-tp --rs=w180 xxx.jpg
+    tuco-tp --rs='w180' xxx.jpg
     ```
 
     指定高度180，宽度缩放
      ```
-    tuco-tp --rs=h180 xxx.jpg
+    tuco-tp --rs='h180' xxx.jpg
     ```
 
   - fit
     指定宽400,高180，实际可能宽或者高不足
      ```
-    tuco-tp --rf=400*180 xxx.jpg
+    tuco-tp --rf='400*180' xxx.jpg
     ```
 
   - cover
     指定宽400,高180，图片裁剪后占满
     ```
-    tuco-tp --rc=400*180 xxx.jpg
+    tuco-tp --rc='400*180' xxx.jpg
     ```
 
 - 改后缀同时指定大小
