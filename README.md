@@ -42,9 +42,9 @@ npm install -g tuco-cli
   tuco-tp -png xxx.jpg
   ```
 
-- **指定大小**
+- **指定尺寸**
 
-  对大小的处理，有三种方式：
+  对尺寸大小的处理，有三种方式：
     - scale(缩放)
     - fit(适应指定宽高容器，图片显示完全，容器内可能空余)
     - cover(覆盖指定宽高容器，图片可能被裁剪，容器被填满)
@@ -74,7 +74,7 @@ npm install -g tuco-cli
     tuco-tp --rc='400*180' xxx.jpg
     ```
 
-- 改后缀同时指定大小
+- 改后缀同时指定尺寸大小
   ```
   tuco-tp -png --rs="h200" dbd.jpeg
   ```
@@ -83,3 +83,8 @@ npm install -g tuco-cli
 
 
 ### 2. Color conversion 颜色转换
+
+
+### TODO
+
+tuco-tp 完成后显示原图大小和压缩后的文件大小
