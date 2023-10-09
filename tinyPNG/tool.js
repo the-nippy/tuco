@@ -1,15 +1,21 @@
 var fs = require("fs");
-//判断打开的是文件 还是 文件夹
-// var path = "wen.txt";
 
-function isDirectoryAsync(filePath) {
+// 获取路径下内容，是文件，是目录，还是不存在
+
+function getPathTargetType(filePath) {
   return new Promise((resolve, reject) => {
     fs.stat(filePath, function (err, stat) {
       if (err) {
-        console.error(err);
-        throw err;
+        // console.error(err);
+        // throw err;
+        resolve(0); // 文件不存在
+        return;
       }
-      resolve(stat.isDirectory());
+      if (stat.isFile()) {
+        resolve(1); // 是文件
+      } else if (stat.isDirectory()) {
+        resolve(2); // 是目录
+      }
     });
   });
 }
@@ -20,12 +26,13 @@ function showErrorExist(errorInfo, moreTip) {
   process.exit();
 }
 
-function showGreenInfo(info) {
+function showGreenInfo(info, exit) {
   info && console.log("\x1b[32m%s\x1b[0m", `Done ${info}`);
+  exit && process.exit();
 }
 
 function showYellowInfo(info) {
   info && console.log("\x1b[33m%s\x1b[0m", `${info}`);
 }
 
-module.exports = { isDirectoryAsync, showErrorExist, showGreenInfo, showYellowInfo };
+module.exports = { getPathTargetType, showErrorExist, showGreenInfo, showYellowInfo };

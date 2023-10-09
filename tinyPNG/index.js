@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * stagxu@outlook.com
- * API KEY:
- * vs9TnlFV45xnhjK5pPCfPf9VqX73TK6K
  *
  * DOC
  * https://tinypng.com/developers/reference/nodejs
  *
  * 参数
+ *
+ * --key="xx"
  *
  * -png -jpeg -jpg -webp
  *
@@ -18,19 +17,26 @@
 const tinify = require("tinify");
 const fs = require("fs");
 const path = require("path");
-const { isDirectoryAsync, showErrorExist, showGreenInfo, showYellowInfo } = require("./tool");
+const { getPathTargetType, showErrorExist, showGreenInfo, showYellowInfo } = require("./tool");
 
-const API_KEY = "vs9TnlFV45xnhjK5pPCfPf9VqX73TK6K";
 const P_TYPES = ["-png", "-jpeg", "-jpg", "-webp"];
-const R_TYPES = ["--rs", "--rf", "--rc"]; // resize     scale fit cover
-
-tinify.key = API_KEY;
 
 const absPath = process.cwd();
 
+const keyFile = "tinyPNG_API_KEY";
+
+async function readAPIKey() {
+  const type = await getPathTargetType("tinyPNG_API_KEY");
+  if (type === 1) {
+    const tinyPNGKey = fs.readFileSync(keyFile + "").toString();
+    return tinyPNGKey;
+  }
+  return "";
+}
+
 async function parseArgsConfig() {
   const args = process.argv.slice(2);
-  // console.info("[args]", args);
+  console.info("[args]", args);
   let resizeConfig = null;
   let suffix = "";
   let fileName = "";
@@ -39,6 +45,14 @@ async function parseArgsConfig() {
   // 参数
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
+
+    // 处理 --key 初始化
+    if (arg.includes("--key=")) {
+      const key = arg.replace("--key=", "");
+      fs.writeFileSync("tinyPNG_API_KEY", key);
+      showGreenInfo("init API Key ~ You don’t need to do this next time", true);
+      return;
+    }
 
     // 处理后缀参数
     if (P_TYPES.includes(arg)) {
@@ -87,8 +101,8 @@ async function parseArgsConfig() {
       fileName = arg.replace("./", "");
       const argPath = path.join(absPath, arg);
       if (fs.existsSync(argPath)) {
-        const isDirectory = await isDirectoryAsync(argPath);
-        // console.info("[isDirectory]", isDirectory);
+        const targetPathType = await getPathTargetType(argPath);
+        const isDirectory = targetPathType === 2;
         // 是文件夹
         if (isDirectory) {
         }
@@ -113,8 +127,15 @@ async function parseArgsConfig() {
   return [resizeConfig, suffix, targetPath, fileName];
 }
 
-async function transPicture() {
+async function triggerTask() {
   const [resizeConfig, suffix, targetPath, fileName] = await parseArgsConfig();
+
+  const tinyPNGKey = await readAPIKey();
+  if (!tinyPNGKey) {
+    showErrorExist("should init tinyPNG-Key first");
+  } else {
+    tinify.key = tinyPNGKey;
+  }
 
   resizeConfig && showYellowInfo("resize: " + resizeConfig.method);
   suffix && showYellowInfo("suffix: " + suffix);
@@ -136,4 +157,4 @@ async function transPicture() {
   }
 }
 
-transPicture();
+triggerTask();
