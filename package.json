@@ -1,9 +1,10 @@
 {
   "name": "tuco-cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "index.js",
   "bin": {
+    "tuco": "index.js",
     "tuco-tp": "tinyPNG/index.js"
   },
   "scripts": {

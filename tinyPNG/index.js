@@ -17,8 +17,7 @@
 const tinify = require("tinify");
 const fs = require("fs");
 const path = require("path");
-const pkgJSON = require("../package.json");
-const { getPathTargetType, showErrorExist, showGreenInfo, showYellowInfo, getFileSize } = require("./tool");
+const { getPathTargetType, showErrorExist, showGreenInfo, showYellowInfo, getFileSize } = require("../common/tool");
 
 const P_TYPES = ["-png", "-jpeg", "-jpg", "-webp"];
 
@@ -47,11 +46,6 @@ async function parseArgsConfig() {
   // 参数
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
-
-    if (arg.toLowerCase() === "-v" || arg.toLowerCase() === "--version") {
-      showYellowInfo(pkgJSON.version, true);
-      return;
-    }
 
     // 处理 --key 初始化
     if (arg.includes("--key=")) {
