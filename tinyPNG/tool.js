@@ -38,16 +38,17 @@ function getPathTargetType(filePath) {
 function showErrorExist(errorInfo, moreTip) {
   errorInfo && console.log("\x1b[31m", `[error: ${errorInfo}]`);
   moreTip && console.log("\x1b[35m", `[attention: ${moreTip}]`);
-  process.exit();
+  process.exit(1);
 }
 
 function showGreenInfo(info, exit) {
   info && console.log("\x1b[32m%s\x1b[0m", `Done ${info}`);
-  exit && process.exit();
+  exit && process.exit(0);
 }
 
-function showYellowInfo(info) {
+function showYellowInfo(info, exit) {
   info && console.log("\x1b[33m%s\x1b[0m", `${info}`);
+  exit && process.exit(0);
 }
 
 module.exports = { getPathTargetType, showErrorExist, showGreenInfo, showYellowInfo, getFileSize };
