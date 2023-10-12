@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { showYellowInfo } = require("./common/tool");
 
 const pkgJSON = require("./package.json");
