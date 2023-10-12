@@ -132,3 +132,7 @@ dist
 # TEST
 Test/
 ./tinyPNG/optimized.jpg
+
+.DS_Store
+*/.DS_Store
+
