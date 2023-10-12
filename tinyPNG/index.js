@@ -23,12 +23,14 @@ const P_TYPES = ["-png", "-jpeg", "-jpg", "-webp"];
 
 const absPath = process.cwd();
 
-const keyFile = "tinyPNG_API_KEY";
+
+const USER_HOME = process.env.HOME;
+const keyFilePath = path.join(USER_HOME, ".npm", "tinyPNG_API_KEY");
 
 async function readAPIKey() {
-  const type = await getPathTargetType("tinyPNG_API_KEY");
+  const type = await getPathTargetType(keyFilePath);
   if (type === 1) {
-    const tinyPNGKey = fs.readFileSync(keyFile + "").toString();
+    const tinyPNGKey = fs.readFileSync(keyFilePath).toString();
     return tinyPNGKey;
   }
   return "";
@@ -36,7 +38,7 @@ async function readAPIKey() {
 
 async function parseArgsConfig() {
   const args = process.argv.slice(2);
-  console.info("[args]", args);
+  // console.info("[args]", args);
   let resizeConfig = null;
   let suffix = "";
   let fileName = "";
@@ -49,7 +51,7 @@ async function parseArgsConfig() {
     // 处理 --key 初始化
     if (arg.includes("--key=")) {
       const key = arg.replace("--key=", "");
-      fs.writeFileSync("tinyPNG_API_KEY", key);
+      fs.writeFileSync(keyFilePath, key);
       showGreenInfo("init API Key ~ You don’t need to do this next time", true);
       return;
     }
@@ -144,8 +146,13 @@ async function triggerTask() {
   const pureFileName = fileName.replace(/(.png|.jpg|.webp|.jpeg)/g, "");
   const finalFileName = `${pureFileName}_tiny${suffix}`;
   const resultPath = path.join(absPath, finalFileName);
-  const cb = () => {
-    showGreenInfo(` -->  \n   ${finalFileName}  [full path: ${resultPath}]`);
+  const cb = (err) => {
+    if (err) {
+      console.info("error", err);
+      showErrorExist("", "check tinyPNG API KEY, use --key='xxx' to reinitialize with the correct key");
+    } else {
+      showGreenInfo(` -->  \n   ${finalFileName}  [full path: ${resultPath}]`);
+    }
   };
   console.info("wait ...");
 
@@ -157,4 +164,5 @@ async function triggerTask() {
   }
 }
 
+// console.info('[keyFilePath]', keyFilePath)
 triggerTask();
