@@ -100,8 +100,21 @@ async function parseArgsConfig() {
 
     // 处理文件路径参数
     if (arg) {
-      fileName = arg.replace("./", "");
-      const argPath = path.join(absPath, arg);
+      let argPath = "";
+      if (path.isAbsolute(arg)) {
+        // 绝对路径的图片
+        const splits = arg.split("/");
+        fileName = splits[splits.length - 1];
+        argPath = arg;
+      } else {
+        // 相对路径的图片
+        fileName = arg.replace("./", "");
+        argPath = path.join(absPath, arg);
+      }
+
+      // console.info("[fileName]", fileName);
+      // console.info("[argPath]", argPath);
+
       if (fs.existsSync(argPath)) {
         const targetPathType = await getPathTargetType(argPath);
         const isDirectory = targetPathType === 2;
@@ -145,7 +158,9 @@ async function triggerTask() {
   const source = tinify.fromFile(targetPath);
   const pureFileName = fileName.replace(/(.png|.jpg|.webp|.jpeg)/g, "");
   const finalFileName = `${pureFileName}_tiny${suffix}`;
-  const resultPath = path.join(absPath, finalFileName);
+  const directoryPath = path.resolve(targetPath, "../");
+  // console.info("directoryPath", directoryPath);
+  const resultPath = path.join(directoryPath, finalFileName);
   const cb = (err) => {
     if (err) {
       console.info("error", err);
