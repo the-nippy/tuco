@@ -17,12 +17,11 @@
 const tinify = require("tinify");
 const fs = require("fs");
 const path = require("path");
-const { getPathTargetType, showErrorExist, showGreenInfo, showYellowInfo } = require("./tool");
+const { getPathTargetType, showErrorExist, showGreenInfo, showYellowInfo, getFileSize } = require("./tool");
 
 const P_TYPES = ["-png", "-jpeg", "-jpg", "-webp"];
 
 const absPath = process.cwd();
-
 
 const USER_HOME = process.env.HOME;
 const keyFilePath = path.join(USER_HOME, ".npm", "tinyPNG_API_KEY");
@@ -156,17 +155,23 @@ async function triggerTask() {
   suffix && showYellowInfo("suffix: " + suffix);
 
   const source = tinify.fromFile(targetPath);
+
+  const originSize = await getFileSize(targetPath);
+  // console.info("[originSize]", originSize);
+
   const pureFileName = fileName.replace(/(.png|.jpg|.webp|.jpeg)/g, "");
   const finalFileName = `${pureFileName}_tiny${suffix}`;
   const directoryPath = path.resolve(targetPath, "../");
   // console.info("directoryPath", directoryPath);
   const resultPath = path.join(directoryPath, finalFileName);
-  const cb = (err) => {
+  const cb = async (err) => {
     if (err) {
       console.info("error", err);
       showErrorExist("", "check tinyPNG API KEY, use --key='xxx' to reinitialize with the correct key");
     } else {
-      showGreenInfo(` -->  \n   ${finalFileName}  [full path: ${resultPath}]`);
+      const resultSize = await getFileSize(resultPath);
+
+      showGreenInfo(` -->  \n  ${finalFileName}  ( ${originSize}KB --> ${resultSize}KB )\n  ( ${resultPath} )`);
     }
   };
   console.info("wait ...");

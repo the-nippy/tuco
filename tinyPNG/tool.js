@@ -2,6 +2,21 @@ var fs = require("fs");
 
 // 获取路径下内容，是文件，是目录，还是不存在
 
+function getFileSize(filePath) {
+  return new Promise((resolve) => {
+    fs.stat(filePath, (err, stats) => {
+      if (err) {
+        console.error(err);
+        resolve(0);
+      } else {
+        const kb = (stats.size / 1024).toFixed(2);
+        // console.log(`文件大小：${(stats.size / 1024).toFixed(2)} KB`);
+        resolve(kb);
+      }
+    });
+  });
+}
+
 function getPathTargetType(filePath) {
   return new Promise((resolve, reject) => {
     fs.stat(filePath, function (err, stat) {
@@ -35,4 +50,4 @@ function showYellowInfo(info) {
   info && console.log("\x1b[33m%s\x1b[0m", `${info}`);
 }
 
-module.exports = { getPathTargetType, showErrorExist, showGreenInfo, showYellowInfo };
+module.exports = { getPathTargetType, showErrorExist, showGreenInfo, showYellowInfo, getFileSize };
