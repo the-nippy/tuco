@@ -100,5 +100,3 @@ tuco-tp --key="API KEY"
 
 ### TODO
 
-初始化 Key 文件的位置不正确
-tuco-tp 完成后显示原图大小和压缩后的文件大小
