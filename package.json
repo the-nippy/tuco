@@ -1,6 +1,6 @@
 {
   "name": "tuco-cli",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -9,6 +9,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/the-nippy/tuco",
+  "bugs": {
+    "url": "https://github.com/the-nippy/tuco/issues"
   },
   "keywords": [],
   "author": "",

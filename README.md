@@ -20,9 +20,17 @@ npm install -g tuco-cli
 
 对图片的操作都会生成新文件，在原文件名字基础上以 \_tiny 结尾命名，不会改变原文件。
 
+在网站获取 https://tinypng.com/developers 获取 tinypng API key， 初始化：
+
+```
+tuco-tp --key="API KEY"
+```
+
+提示 Done 之后，就可以使用 tuco-tp 命令对图片处理了，后续无需再次初始化，多次初始化会覆盖之前设置的 key。
+
 - **压缩命令**
 
-  主要命令为 tuco-tp，采用该命令对图片压缩。
+  命令为 tuco-tp，采用该命令对图片压缩，转换格式和尺寸大小。
 
   ```
   tuco-tp xxx.png
