@@ -14,7 +14,7 @@ npm install -g tuco-cli
 
 ## 功能和使用方法
 
-### 1. tinyPNG 图片压缩 & 转格式
+### 1. tinyPNG 图片压缩 & 转格式 & 转尺寸
 
 图片压缩，图片大小调整，图片转格式（转格式的同时也会压缩）。
 
@@ -97,6 +97,5 @@ tuco-tp --key="API KEY"
   将依据 dbd.jpeg 生成 dbd_tiny.png 文件，按高度 200 缩放
 
 ### 2. Color conversion 颜色转换
-
-### TODO
+todo..
 
