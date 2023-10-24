@@ -20,7 +20,7 @@ npm install -g tuco-cli
 
 对图片的操作都会生成新文件，在原文件名字基础上以 \_tiny 结尾命名，不会改变原文件。
 
-在网站获取 https://tinypng.com/developers 获取 tinypng API key， 初始化：
+在网站 https://tinypng.com/developers 获取 tinypng API key， 初始化：
 
 ```
 tuco-tp --key="API KEY"
