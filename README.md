@@ -23,7 +23,7 @@ tuco --version
 
 ## 仓库
 
-github.com/the-nippy/tuco
+https://github.com/the-nippy/tuco
 
  issue❓ / 意见💭 / 好点子🚀 ，或者 star⭐   ~
 
