@@ -12,6 +12,22 @@ a cli tool
 npm install -g tuco-cli
 ```
 
+3. 检查 tuco-cli 版本
+```
+tuco -v
+```
+或者
+```
+tuco --version
+```
+
+## 仓库
+
+github.com/the-nippy/tuco
+
+ issue❓ / 意见💭 / 好点子🚀 ，或者 star⭐   ~
+
+
 ## 功能和使用方法
 
 ### 1. tinyPNG 图片压缩 & 转格式 & 转尺寸
@@ -26,7 +42,7 @@ npm install -g tuco-cli
 tuco-tp --key="API KEY"
 ```
 
-提示 Done 之后，就可以使用 tuco-tp 命令对图片处理了，后续无需再次初始化，多次初始化会覆盖之前设置的 key。
+提示 Done 之后，就可以使用 `tuco-tp` 命令对图片处理了，后续无需再次初始化，多次初始化会覆盖之前设置的 key。（tp 取名自 tinypng）
 
 - **压缩命令**
 
