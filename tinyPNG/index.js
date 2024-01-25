@@ -131,7 +131,7 @@ async function parseArgsConfig() {
   }
 
   if (!fileName) {
-    showErrorExist("No file found", 'Example => "tuco-tp -png test.webp"');
+    showErrorExist("No file found", 'Example => "ti-tp -png test.webp"');
   }
 
   // 不指定后缀，使用相同后缀
