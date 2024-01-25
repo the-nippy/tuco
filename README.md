@@ -7,6 +7,7 @@
 **目前功能**：
 
 - **图片压缩 & 改尺寸大小 & 换格式后缀**
+- **翻译 启动浏览器（百度翻译）**
 
 ## 安装
 
@@ -32,9 +33,10 @@ tuco --version
 
 ## 命令
 
-tuco 作为仓库名，不用于命令。为了缩减命令长度，取`tight tight tight`（tuco 台词）中的`ti`作为命令前缀。
+tuco 作为仓库名，不用于命令（除了版本信息的`tuco -v`或`tuco --version`）。为了缩减功能命令长度，取`tight tight tight`（tuco 台词）中的`ti`作为命令前缀。
 
 - `ti-tp` - 压缩图片命令
+- `ti-tl` - 翻译命令
 
 ## 功能和使用方法
 
@@ -120,6 +122,14 @@ ti-tp --key="API KEY"
   ```
   将依据 dbd.jpeg 生成 dbd_tiny.png 文件，按高度 200 缩放
 
-### 2. Color conversion 颜色转换
+### 2. 翻译
+
+只接受一个参数，待翻译的文本。根据正则匹配第一字符为字母则英译中，否则中译英。
+
+`ti-tl fatal`打开百度翻译英译中翻译 fatal
+
+`ti-tl 你好`打开百度翻译中译英翻译 你好
+
+### 3. Color conversion 颜色转换
 
 todo..
